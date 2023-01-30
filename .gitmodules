@@ -1,0 +1,3 @@
+[submodule "DrGPUM"]
+	path = DrGPUM
+	url = https://github.com/Lin-Mao/DrGPUM.git
