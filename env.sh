@@ -1,10 +1,9 @@
 #!/bin/bash
-export AE_ROOT=/home/lm/asplos23-ae
-export APPS_DIR=$AE_ROOT/apps
+export AE_ROOT=/root
+export APPS_DIR=$AE_ROOT/asplos23-ae/apps
+
+export PATH=/root/openmpi-4.1.2/bin:$PATH
+export LD_LIBRARY_PATH=/root/openmpi-4.1.2/lib:$LD_LIBRARY_PATH
 
 # export PYTORCH_DIR=xxx
 
-export DRGPUM_ROOT=/home/lm/DrGPUM/gvprof
-export PATH=${DRGPUM_ROOT}/bin:$PATH
-export PATH=${DRGPUM_ROOT}/hpctoolkit/bin:$PATH
-export PATH=${DRGPUM_ROOT}/redshow/bin:$PATH
