@@ -1,5 +1,6 @@
 #!/bin/bash
 ## install pytorch
+export AE_ROOT=/home/asplos-ae
 eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
 conda create -n torch python=3.8 -y
 conda activate torch
@@ -21,17 +22,17 @@ export MAX_JOBS=$(nproc --all)
 export USE_NINJA=OFF
 python setup.py install
 
-cd ../ && cd pytorch-opt
-conda deactivate
-conda create -n torch-opt python=3.8 -y
-conda activate torch-opt
-conda install astunparse numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing_extensions future six requests dataclasses -y
-conda install -c pytorch magma-cuda116 -y
+# cd ../ && cd pytorch-opt
+# conda deactivate
+# conda create -n torch-opt python=3.8 -y
+# conda activate torch-opt
+# conda install astunparse numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing_extensions future six requests dataclasses -y
+# conda install -c pytorch magma-cuda116 -y
 
-python setup.py install
+# python setup.py install
 
 ## install tool
-source PYTORCH_DIR=$AE_ROOT/pytorch/torch
+export PYTORCH_DIR=$AE_ROOT/pytorch/torch
 
 cd $AE_ROOT
 
