@@ -28,7 +28,7 @@ make -f makefile_sm$ARCH -j
 ################################################################################################
 cd $APPS_DIR
 mkdir laghos_ori
-cd laghos_ori && git clone git@github.com:Lin-Mao/Laghos.git
+cd laghos_ori && git clone https://github.com/AppCases/Laghos.git
 cd Laghos && git checkout cuda
 
 make setup NPROC=16 MFEM_BUILD="pcuda CUDA_ARCH='sm_$ARCH -lineinfo' BASE_FLAGS='-std=c++11 -g'"
@@ -49,7 +49,7 @@ cd $APPS_DIR
 # original
 export GPU_INCLUDE_PATH=/usr/local/cuda/include
 export GPU_LIBRARY_PATH=/usr/local/cuda/lib64
-git clone git@github.com:AppCases/miniMDock.git miniMDock_ori  && cd miniMDock_ori
+git clone https://github.com/AppCases/miniMDock.git miniMDock_ori  && cd miniMDock_ori
 git checkout cuda
 
 make DEVICE=GPU API=CUDA CARD=NVIDIA
@@ -121,7 +121,7 @@ cd ../../
 ##################################### Install XSBench ##########################################
 ################################################################################################
 cd $APPS_DIR
-git clone git@github.com:AppCases/XSBench.git XSBench_ori
+git clone https://github.com/AppCases/XSBench.git XSBench_ori
 cp -r XSBench_ori XSBench_opt
 
 # original
