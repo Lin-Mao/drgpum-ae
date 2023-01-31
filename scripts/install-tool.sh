@@ -1,6 +1,6 @@
 #!/bin/bash
 ## install pytorch
-export AE_ROOT=/home/asplos-ae
+export AE_ROOT=/root
 eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
 conda create -n torch python=3.8 -y
 conda activate torch

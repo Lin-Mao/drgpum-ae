@@ -1,10 +1,12 @@
 #/bin/bash
-ARCH=86
+ARCH=80
+export AE_ROOT=/root
+export PATH=/root/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/root/openmpi/lib:$LD_LIBRARY_PATH
 
 if [ -n "$1" ]; then
     ARCH=$1
 fi
-
 APPS_DIR=$AE_ROOT/apps
 
 mkdir $APPS_DIR
@@ -139,7 +141,7 @@ make SM_VERSION=$ARCH -j
 
 
 ################################################################################################
-##################################### Install XSBench ##########################################
+################################# Install simpleMultiCopy ######################################
 ################################################################################################
 cd $APPS_DIR
 git clone https://github.com/AppCases/cuda-samples.git simpleMultiCopy_ori
