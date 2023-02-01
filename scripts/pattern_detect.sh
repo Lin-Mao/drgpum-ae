@@ -8,6 +8,7 @@ apps=(
 darknet
 # laghos
 miniMDock
+XSBench
 Huffman
 Dwt2d
 2MM
@@ -18,8 +19,21 @@ Pytorch
 simpleMultiCopy
 )
 
-for app in "${apps[@]}";
-do
-    echo "-------- Patterns of $app --------"
-    python $PATTERN_DETECT -p $PROFILE_LOG/$app
-done
+
+echo "-------- darknet --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/darknet
+echo "-------- miniMDock --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/miniMDock
+echo "-------- Huffman --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/Huffman
+echo "-------- Dwt2d --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/Dwt2d
+echo "-------- 2MM --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/2MM
+echo "-------- 3MM --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/3MM
+echo "-------- GRAMSCHM --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/GRAMSCHM
+echo "-------- BICG --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/BICG
+
