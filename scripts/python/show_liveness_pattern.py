@@ -280,17 +280,17 @@ def report_patterns(app_patterns, memory_size_list, pattern_result, kernel_count
 
     for i in app_patterns:
         if i == 1 and app_patterns[i] != 0:
-            print("early allocation:     " + str(app_patterns[i]) + " object(s)")
+            print("early allocation:        " + str(app_patterns[i]) + " object(s)")
         elif i == 2 and app_patterns[i] != 0:
-            print("late de-allocation:   " + str(app_patterns[i]) + " object(s)")
+            print("late de-allocation:      " + str(app_patterns[i]) + " object(s)")
         elif i == 3 and app_patterns[i] != 0:
-            print("temporary idle:       " + str(app_patterns[i]) + " object(s)")
+            print("temporary idle:          " + str(app_patterns[i]) + " object(s)")
         elif i == 4 and app_patterns[i] != 0:
-            print("unused allocation:    " + str(app_patterns[i]) + " object(s)")
+            print("unused allocation:       " + str(app_patterns[i]) + " object(s)")
         elif i == 5 and app_patterns[i] != 0:
-            print("redundant allocation: " + str(app_patterns[i]) + " object(s)")
+            print("redundant allocation:    " + str(app_patterns[i]) + " object(s)")
         elif i == 6 and app_patterns[i] != 0:
-            print("dead write:           " + str(app_patterns[i]) + " object(s)")
+            print("dead write:              " + str(app_patterns[i]) + " object(s)")
         elif i == 7 and app_patterns[i] != 0:
             print("memory leak:          " + str(app_patterns[i]) + " object(s)")
 
