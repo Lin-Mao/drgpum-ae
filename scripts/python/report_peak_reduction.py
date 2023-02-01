@@ -5,22 +5,7 @@ import argparse
 
 
 def main(path):
-    apps = [
-        "darknet",
-        # "laghos",
-        "miniMDock",
-        "XSBench",
-        "Huffman",
-        "Dwt2d",
-        "2MM",
-        "3MM",
-        "GRAMSCHM",
-        "BICG",
-        "Pytorch",
-        "simpleMultiCopy"
-    ]
-
-    filename = os.path.join(path, "memory_reduction.txt")
+    filename = os.path.join(path, "memory_peak_log.txt")
     file = open(filename)
     line = file.readline()
     prev_app = ""
