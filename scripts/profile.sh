@@ -3,6 +3,10 @@
 export AE_ROOT=/root
 export APPS_DIR=$AE_ROOT/applications
 
+profile_log=$AE_ROOT/results/profile_log
+mkdir -p $profile_log
+profile_result=$AE_ROOT/results/memory_reduction.txt
+
 export DRGPUM_PATH=$AE_ROOT/DrGPUM/gvprof
 export PATH=${DRGPUM_PATH}/bin:$PATH
 export PATH=${DRGPUM_PATH}/hpctoolkit/bin:$PATH
@@ -10,9 +14,6 @@ export PATH=${DRGPUM_PATH}/redshow/bin:$PATH
 
 export PATH=/root/openmpi/bin:$PATH
 export LD_LIBRARY_PATH=/root/openmpi/lib:$LD_LIBRARY_PATH
-
-mkdir -p $AE_ROOT/profile_log
-profile_log=$AE_ROOT/profile_log
 
 # A100:80 RTX 3090:86
 sm=86
@@ -236,9 +237,9 @@ cp -r hpctoolkit-python-measurements/memory_liveness/ $profile_log/Pytorch
 
 version=opt
 cd $APPS_DIR
-hpcrun -e gpu=nvidia $run_resnet50
+hpcrun -e gpu=nvidia $run_resnet50 &>dev/null
 rm hpctoolkit-python-measurements/*hpcrun
-hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50 &> /dev/null
 echo -n "Pytorch $version "
 cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1
 
