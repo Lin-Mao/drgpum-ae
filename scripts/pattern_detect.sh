@@ -24,6 +24,8 @@ echo "-------- darknet --------"
 python $PATTERN_DETECT -p $PROFILE_LOG/darknet
 echo "-------- miniMDock --------"
 python $PATTERN_DETECT -p $PROFILE_LOG/miniMDock
+echo "-------- XSBench --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/XSBench
 echo "-------- Huffman --------"
 python $PATTERN_DETECT -p $PROFILE_LOG/Huffman
 echo "-------- Dwt2d --------"
@@ -36,4 +38,8 @@ echo "-------- GRAMSCHM --------"
 python $PATTERN_DETECT -p $PROFILE_LOG/GRAMSCHM
 echo "-------- BICG --------"
 python $PATTERN_DETECT -p $PROFILE_LOG/BICG
+echo "-------- Pytorch --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/Pytorch
+echo "-------- simpleMultiCopy --------"
+python $PATTERN_DETECT -p $PROFILE_LOG/simpleMultiCopy
 
