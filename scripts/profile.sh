@@ -217,6 +217,30 @@ gvprof -v -e $redshow_mode $control_knobs $run_bicg &> /dev/null
 echo -n "BICG $version "
 cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1
 
+################################################################################################
+#################################### Profile Pytorch ###########################################
+################################################################################################
+version=ori
+cd $APPS_DIR
+echo "------------------ Pytorch $redshow_mode ------------------"
+eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
+conda activate torch
+run_resnet50="python resnet50-conv-unit.py"
+cd pytorch_$version
+hpcrun -e gpu=nvidia $run_resnet50
+rm hpctoolkit-python-measurements/*hpcrun
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50
+echo -n "Pytorch $version "
+cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1
+cp -r hpctoolkit-python-measurements/memory_liveness/ $profile_log/Pytorch
+
+version=opt
+cd $APPS_DIR
+hpcrun -e gpu=nvidia $run_resnet50
+rm hpctoolkit-python-measurements/*hpcrun
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50
+echo -n "Pytorch $version "
+cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1
 
 ################################################################################################
 #################################### Profile Polybench #########################################
