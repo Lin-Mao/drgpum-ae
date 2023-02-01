@@ -276,7 +276,7 @@ def report_patterns(app_patterns, memory_size_list, pattern_result, kernel_count
     Write kernel to file and output to terminal
     """
 
-    print("Launch %lu kernel(s)"%(kernel_count))
+    # print("Launch %lu kernel(s)"%(kernel_count))
 
     for i in app_patterns:
         if i == 1 and app_patterns[i] != 0:

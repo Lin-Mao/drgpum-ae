@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export AE_ROOT=/root
-export APPS_DIR=$AE_ROOT/applications
+export APPS_DIR=$AE_ROOT/apps
 
 profile_log=$AE_ROOT/results/profile_log
 mkdir -p $profile_log
@@ -110,7 +110,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ######################################## huffman ###############################################
 version=ori
 cd $APPS_DIR && cd rodinia_$version
-echo "------------------ huffman $redshow_mode ------------------"
+echo "------------------ huffman analyzing ------------------"
 run_huffman="./pavle ../data/huffman/test1024_H2.206587175259.in"
 cd huffman
 gvprof -v -e $redshow_mode $control_knobs $run_huffman &> /dev/null
@@ -128,7 +128,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 version=ori
 cd $APPS_DIR && cd rodinia_$version
 cd dwt2d
-echo "------------------ dwt2d $redshow_mode ------------------"
+echo "------------------ dwt2d analyzing ------------------"
 run_dwt2d="./dwt2d 192.bmp -d 192x192 -f -5 -l 3"
 gvprof -v -e $redshow_mode $control_knobs $run_dwt2d &> /dev/null
 echo -n "Dwt2d $version "
@@ -149,7 +149,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ########################################## 2MM #################################################
 version=ori
 cd $APPS_DIR && cd polybench_$version
-echo "------------------ 2MM $redshow_mode ------------------"
+echo "------------------ 2MM analyzing ------------------"
 run_2mm="./2mm.exe"
 cd 2MM
 gvprof -v -e $redshow_mode $control_knobs $run_2mm &> /dev/null
@@ -167,6 +167,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ########################################## 3MM #################################################
 version=ori
 cd $APPS_DIR && cd polybench_$version
+echo "------------------ 2MM analyzing ------------------"
 run_3mm="./3mm.exe"
 cd 3MM
 gvprof -v -e $redshow_mode $control_knobs $run_3mm &> /dev/null
@@ -184,7 +185,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ########################################## GRAMSCHM #################################################
 version=ori
 cd $APPS_DIR && cd polybench_$version
-echo "------------------ GRAMSCHM $redshow_mode ------------------"
+echo "------------------ GRAMSCHM analyzing ------------------"
 run_gramschm="./gramschmidt.exe"
 cd GRAMSCHM
 gvprof -v -e $redshow_mode $control_knobs $run_gramschm &> /dev/null
@@ -203,7 +204,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ########################################## BICG #################################################
 version=ori
 cd $APPS_DIR && cd polybench_$version
-echo "------------------ BICG $redshow_mode ------------------"
+echo "------------------ BICG analyzing ------------------"
 run_bicg="./bicg.exe"
 cd BICG
 gvprof -v -e $redshow_mode $control_knobs $run_bicg &> /dev/null
@@ -223,23 +224,24 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ################################################################################################
 version=ori
 cd $APPS_DIR
-echo "------------------ Pytorch $redshow_mode ------------------"
+echo "------------------ Pytorch analyzing ------------------"
 eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
 conda activate torch
 run_resnet50="python resnet50-conv-unit.py"
 cd pytorch_$version
 hpcrun -e gpu=nvidia $run_resnet50
-rm hpctoolkit-python-measurements/*hpcrun
-hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50
+rm hpctoolkit-python-measurements/*hpcrun &>dev/null
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50 &>dev/null
 echo -n "Pytorch $version "
 cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1
 cp -r hpctoolkit-python-measurements/memory_liveness/ $profile_log/Pytorch
 
 version=opt
 cd $APPS_DIR
+cd pytorch_$version
 hpcrun -e gpu=nvidia $run_resnet50 &>dev/null
 rm hpctoolkit-python-measurements/*hpcrun
-hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50 &> /dev/null
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50 &>/dev/null
 echo -n "Pytorch $version "
 cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1
 
@@ -248,7 +250,7 @@ cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n
 ################################################################################################
 version=ori
 cd $APPS_DIR && cd simpleMultiCopy_$version && cd Samples/0_Introduction/simpleMultiCopy
-echo "------------------ simpleMultiCopy $redshow_mode ------------------"
+echo "------------------ simpleMultiCopy analyzing ------------------"
 run_simpleMultiCopy="./simpleMultiCopy"
 gvprof -v -e $redshow_mode $control_knobs $run_bicg &> /dev/null
 echo -n "simpleMultiCopy $version "

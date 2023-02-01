@@ -19,6 +19,6 @@ simpleMultiCopy
 
 for app in "${apps[@]}";
 do
-    echo "Patterns of $app"
-    python $PATTERN_DETECT -p $PROFILE_LOG/app
+    echo "----- Patterns of $app -----"
+    python $PATTERN_DETECT -p $PROFILE_LOG/$app
 done
