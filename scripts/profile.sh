@@ -250,11 +250,11 @@ cd $APPS_DIR
 echo "------------------ Pytorch analyzing ------------------"
 eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
 conda activate torch
-run_resnet50="python resnet50-conv-unit.py"
+run_pytorch="python resnet50-conv-unit.py"
 cd pytorch_$version
-hpcrun -e gpu=nvidia $run_resnet50 &> /dev/null
+hpcrun -e gpu=nvidia $run_pytorch &> /dev/null
 rm hpctoolkit-python-measurements/*hpcrun
-hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50 &> /dev/null
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_pytorch &> /dev/null
 conda deactivate
 echo -n "Pytorch $version " >> $verbose
 cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1 >> $verbose
@@ -264,9 +264,9 @@ version=opt
 cd $APPS_DIR
 cd pytorch_$version
 conda activate torch
-hpcrun -e gpu=nvidia $run_resnet50 &> /dev/null
+hpcrun -e gpu=nvidia $run_pytorch &> /dev/null
 rm hpctoolkit-python-measurements/*hpcrun
-hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_resnet50 &> /dev/null
+hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_pytorch &> /dev/null
 conda deactivate
 echo -n "Pytorch $version " >> $verbose
 cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1 >> $verbose
