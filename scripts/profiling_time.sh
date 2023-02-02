@@ -7,6 +7,14 @@ control_knobs=""
 export AE_ROOT=/root
 export APPS_DIR=$AE_ROOT/apps
 export app_path=$APPS_DIR
+
+export DRGPUM_PATH=$AE_ROOT/DrGPUM/gvprof
+export PATH=${DRGPUM_PATH}/bin:$PATH
+export PATH=${DRGPUM_PATH}/hpctoolkit/bin:$PATH
+export PATH=${DRGPUM_PATH}/redshow/bin:$PATH
+
+export PATH=/root/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/root/openmpi/lib:$LD_LIBRARY_PATH
 # profiling version ori or opt
 version=ori
 # interations for each profiling
@@ -42,7 +50,6 @@ then
     echo "Empty mode. Please specify profiling mode."
     exit
 fi
-
 
 # run_experiment
 cd $AE_ROOT
