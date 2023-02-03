@@ -46,9 +46,9 @@ python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/tmp/intra_object.
 
 
 eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
-conda create -n overhead python=3.8 -y
+conda create -n overhead python=3.8 -y &> /dev/null
 conda activate overhead
-conda install matplotlib numpy -y
-python $SCRIPTS_PATH/python/overhead.py -p $time_path/ -o $RESULTS_PATH/
+conda install matplotlib numpy -y &> /dev/null
+python $SCRIPTS_PATH/python/overhead.py -p $time_path/ -o $RESULTS_PATH/ &> /dev/null
 conda deactivate
 echo "---------------------------------- done ----------------------------------"

@@ -95,8 +95,8 @@ def get_overhead_result(overhead: dict) -> tuple:
 
 
 def main(path, output_path):
-    apps = {"darkent": "Darknet",
-            "laghos": "Laghos",
+    apps = {"darknet": "Darknet",
+            # "laghos": "Laghos",
             "miniMDock": "MiniMDock",
             "XSBench": "XSBench",
             "huffman": "Rodinia/huffman",
@@ -105,7 +105,9 @@ def main(path, output_path):
             "3MM": "Polybench/3MM",
             "GRAMSCHM": "Polybench/\nGramSchmidt",
             "BICG": "Polybench/BICG",
-            "PyTorch": "PyTorch"}
+            "PyTorch": "PyTorch",
+            "simpleMultiCopy": "simpleMultiCopy"
+            }
 
     overhead = process_data(path, apps, )
     print(overhead)

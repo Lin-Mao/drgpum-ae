@@ -8,7 +8,7 @@ import sys
 import re
 
 apps = ["darknet", "laghos", "miniMDock", "XSBench", "huffman", \
-        "dwt2d", "2MM", "3MM", "GRAMSCHM", "BICG"]
+        "dwt2d", "2MM", "3MM", "GRAMSCHM", "BICG", "Pytorch", "simpleMultiCopy"]
 
 # The output.log file from overhead.sh's output
 file = open(sys.argv[1])
