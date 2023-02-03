@@ -2,7 +2,7 @@
 
 export AE_ROOT=/root
 export PATTERN_DETECT=$AE_ROOT/scripts/python/show_liveness_pattern.py
-export PROFILE_LOG=$AE_ROOT/results/profile_log
+export PROFILE_LOG=$AE_ROOT/results/tmp/profile_log
 
 apps=(
 darknet
