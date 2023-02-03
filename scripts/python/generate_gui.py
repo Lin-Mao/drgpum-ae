@@ -290,6 +290,6 @@ if __name__ == "__main__":
 
     num_of_memories = 0
     nums_of_digits = 6
-    file_name = "timeline.json"
+    file_name = "liveness.json"
     call_path_flag = False
     main(path, num_of_memories, file_name, call_path_flag, output_path)

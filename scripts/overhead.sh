@@ -12,8 +12,14 @@ interval=5
 
 cd $AE_ROOT
 
+echo "##########################################################################"
+echo "##         Program   start  at  $(date)         ##"
+echo "##         Estimated to end at  $(date -d "+4 hour")         ##"
+echo "##                  May vary from machine to machine.                   ##"
+echo "##########################################################################"
+
 # execution
-echo "-------------- original executing ----------------"
+echo "-------------------------- original executing ----------------------------"
 bash $SCRIPTS_PATH/execution_time.sh &> $RESULTS_PATH/tmp/execution_profile.log
 
 # object-level analysis
@@ -21,13 +27,14 @@ bash $SCRIPTS_PATH/execution_time.sh &> $RESULTS_PATH/tmp/execution_profile.log
 bash $SCRIPTS_PATH/profiling_time.sh -e memory_liveness -ck "-ck HPCRUN_SANITIZER_LIVENESS_ONGPU=1" -i $interval -n $iter &> $RESULTS_PATH/tmp/object_level.log
 
 # set whitelist
-echo "------------- object-level analyzing -------------"
+echo "------------------------- object-level analyzing -------------------------"
 python $SCRIPTS_PATH/python/set_whitelist.py $APPS_DIR &> /dev/null
 
 # intra-object-level analysis
-echo "---------- intra-object-level analyzing ----------"
+echo "---------------------- intra-object-level analyzing ----------------------"
 bash $SCRIPTS_PATH/profiling_time.sh -e memory_heatmap -ck "-ck HPCRUN_SANITIZER_KERNEL_SAMPLING_FREQUENCY=100 -ck HPCRUN_SANITIZER_WHITELIST=whitelist" -i $interval -n $iter &> $RESULTS_PATH/tmp/intra_object.log
 
+echo "-------------------------- overhead analyzing ----------------------------"
 time_path=$RESULTS_PATH/tmp/time
 mkdir -p $time_path
 
@@ -44,3 +51,4 @@ conda activate overhead
 conda install matplotlib numpy -y
 python $SCRIPTS_PATH/python/overhead.py -p $time_path/ -o $RESULTS_PATH/
 conda deactivate
+echo "---------------------------------- done ----------------------------------"
