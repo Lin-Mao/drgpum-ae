@@ -105,7 +105,7 @@ def main(path, output_path):
             "3MM": "Polybench/3MM",
             "GRAMSCHM": "Polybench/\nGramSchmidt",
             "BICG": "Polybench/BICG",
-            "PyTorch": "PyTorch",
+            "Pytorch": "Pytorch",
             "simpleMultiCopy": "simpleMultiCopy"
             }
 
