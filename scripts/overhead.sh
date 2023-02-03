@@ -13,15 +13,16 @@ interval=5
 cd $AE_ROOT
 
 # execution
-echo "-------------- original executing ---------------"
+echo "-------------- original executing ----------------"
 bash $SCRIPTS_PATH/execution_time.sh &> $RESULTS_PATH/tmp/execution_profile.log
 
 # object-level analysis
-echo "---------- object-level analyzing ----------"
+
 bash $SCRIPTS_PATH/profiling_time.sh -e memory_liveness -ck "-ck HPCRUN_SANITIZER_LIVENESS_ONGPU=1" -i $interval -n $iter &> $RESULTS_PATH/tmp/object_level.log
 
 # set whitelist
-python $SCRIPTS_PATH/python/set_whitelist.py $APPS_DIR
+echo "------------- object-level analyzing -------------"
+python $SCRIPTS_PATH/python/set_whitelist.py $APPS_DIR &> /dev/null
 
 # intra-object-level analysis
 echo "---------- intra-object-level analyzing ----------"
