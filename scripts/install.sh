@@ -14,5 +14,13 @@ then
     exit
 fi
 
+# get update-to-date scripts
+cd $AE_ROOT
+git clone https://github.com/Lin-Mao/drgpum-ae.git &> /dev/null
+rm -rf $SCRIPTS_PATH/python
+cd drgpum-ae/scripts/ && rm install.sh && mv -f ./* $SCRIPTS_PATH/
+cd $AE_ROOT
+rm -rf drgpum-ae
+
 bash $SCRIPTS_PATH/install-tool.sh
 bash $SCRIPTS_PATH/install-apps.sh $ARCH

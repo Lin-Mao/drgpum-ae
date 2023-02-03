@@ -257,7 +257,7 @@ cp -r hpctoolkit-python-measurements/memory_liveness/ $profile_log/Pytorch
 version=opt
 cd $APPS_DIR
 cd pytorch_$version
-conda activate torch
+conda activate torch-$version
 hpcrun -e gpu=nvidia $run_pytorch &> /dev/null
 rm hpctoolkit-python-measurements/*hpcrun
 hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_pytorch &> /dev/null
