@@ -48,7 +48,7 @@ docker run --rm --runtime=nvidia -it -v `pwd`/docker_drgpum_home:/root  drgpum_a
   cat ./results/pattens.txt
   ```
 
-* Reproduce overhead in Figure 6 (1 hour). It will generate an `overhead.pdf` file under `/root/results/`.
+* Reproduce overhead in Figure 6 (3 hour). It will generate an `overhead.pdf` file under `/root/results/`.
 
   ```shell
   cd /root
