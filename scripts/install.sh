@@ -18,7 +18,7 @@ fi
 cd $AE_ROOT
 git clone https://github.com/Lin-Mao/drgpum-ae.git &> /dev/null
 rm -rf $SCRIPTS_PATH/python
-cd drgpum-ae/scripts/ && rm install.sh && mv -f ./* $SCRIPTS_PATH/
+cd drgpum-ae/scripts/ && rm install.sh && mv ./* $SCRIPTS_PATH/
 cd $AE_ROOT
 rm -rf drgpum-ae
 
