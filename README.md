@@ -5,8 +5,8 @@
 * Download packages
 
 ```shell
-scp -P 2300 asplos-ae@169.236.181.99:/home/asplos-ae/files/docker_drgpum_home.tar.7z ./
-scp -P 2300 asplos-ae@169.236.181.99:/home/asplos-ae/files/drgpum_ae_image.tar ./
+# download link
+https://doi.org/10.5281/zenodo.7588406
 ```
 
 * If 7za if not available in the system
