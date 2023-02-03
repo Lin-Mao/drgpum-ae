@@ -67,6 +67,7 @@ def draw_figure(output_path: str, overhead: dict) -> Any:
     # plt.xticks(rotation=45)
     # plt.margins(0.35)
     plt.subplots_adjust(bottom=0.35)
+    plt.title("Overhead of this machine.")
     plt.show()
     pdf = PdfPages(os.path.join(output_path, "overhead.pdf"))
     pdf.savefig(fig)

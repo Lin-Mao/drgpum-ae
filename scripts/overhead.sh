@@ -13,8 +13,8 @@ interval=5
 cd $AE_ROOT
 
 echo "##########################################################################"
-echo "##         Program   start  at  $(date)         ##"
-echo "##         Estimated to end at  $(date -d "+4 hour")         ##"
+echo "##         Program   start  at  $(date)           ##"
+echo "##         Estimated to end at  $(date -d "+4 hour")           ##"
 echo "##                  May vary from machine to machine.                   ##"
 echo "##########################################################################"
 
