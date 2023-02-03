@@ -3,10 +3,10 @@
 export AE_ROOT=/root
 export APPS_DIR=$AE_ROOT/apps
 
-profile_log=$AE_ROOT/results/profile_log
+profile_log=$AE_ROOT/results/tmp/profile_log
 mkdir -p $profile_log
 profile_result=$AE_ROOT/results/memory_reduction.txt
-verbose=$AE_ROOT/results/memory_peak_log.txt
+verbose=$AE_ROOT/results/tmp/memory_peak_log.txt
 
 export DRGPUM_PATH=$AE_ROOT/DrGPUM/gvprof
 export PATH=${DRGPUM_PATH}/bin:$PATH
@@ -16,8 +16,6 @@ export PATH=${DRGPUM_PATH}/redshow/bin:$PATH
 export PATH=/root/openmpi/bin:$PATH
 export LD_LIBRARY_PATH=/root/openmpi/lib:$LD_LIBRARY_PATH
 
-# A100:80 RTX 3090:86
-sm=86
 # profiling mode
 control_knobs="-ck HPCRUN_SANITIZER_LIVENESS_ONGPU=1"
 
@@ -27,10 +25,6 @@ while test "x$1" != x
 do
     arg="$1"; shift
     case "$arg" in
-        -sm)
-            sm=$1
-            shift
-            ;;
         -e)
             redshow_mode=$1
             shift

@@ -14,26 +14,32 @@ cd $AE_ROOT
 
 # execution
 echo "-------------- original executing ---------------"
-bash $SCRIPTS_PATH/execution_time.sh &> $RESULTS_PATH/execution.profile_log
+bash $SCRIPTS_PATH/execution_time.sh &> $RESULTS_PATH/tmp/execution_profile.log
 
 # object-level analysis
 echo "---------- object-level analyzing ----------"
-bash $SCRIPTS_PATH/profiling_time.sh -e memory_liveness -ck "-ck HPCRUN_SANITIZER_LIVENESS_ONGPU=1" -i $interval -n $iter &> $RESULTS_PATH/object_level.log
+bash $SCRIPTS_PATH/profiling_time.sh -e memory_liveness -ck "-ck HPCRUN_SANITIZER_LIVENESS_ONGPU=1" -i $interval -n $iter &> $RESULTS_PATH/tmp/object_level.log
 
 # set whitelist
 python $SCRIPTS_PATH/python/set_whitelist.py $APPS_DIR
 
 # intra-object-level analysis
 echo "---------- intra-object-level analyzing ----------"
-bash $SCRIPTS_PATH/profiling_time.sh -e memory_heatmap -ck "-ck HPCRUN_SANITIZER_KERNEL_SAMPLING_FREQUENCY=100 -ck HPCRUN_SANITIZER_WHITELIST=whitelist" -i $interval -n $iter &> $RESULTS_PATH/intra_object.log
+bash $SCRIPTS_PATH/profiling_time.sh -e memory_heatmap -ck "-ck HPCRUN_SANITIZER_KERNEL_SAMPLING_FREQUENCY=100 -ck HPCRUN_SANITIZER_WHITELIST=whitelist" -i $interval -n $iter &> $RESULTS_PATH/tmp/intra_object.log
 
-time_path=$RESULTS_PATH/time
+time_path=$RESULTS_PATH/tmp/time
 mkdir -p $time_path
 
-python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/execution.profile_log > $time_path/baseline.log
+python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/tmp/execution_profile.log > $time_path/baseline.log
 
-python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/object_level.log > $time_path/object_level.log
+python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/tmp/object_level.log > $time_path/object_level.log
 
-python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/intra_object.log > $time_path/intra_object.log
+python $SCRIPTS_PATH/python/show_elapsed_time.py $RESULTS_PATH/tmp/intra_object.log > $time_path/intra_object.log
 
+
+eval "$($AE_ROOT/anaconda3/bin/conda shell.bash hook)"
+conda create -n overhead python=3.8 -y
+conda activate overhead
+conda install matplotlib numpy -y
 python $SCRIPTS_PATH/python/overhead.py -p $time_path/ -o $RESULTS_PATH/
+conda deactivate
