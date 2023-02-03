@@ -4,9 +4,13 @@
 
 * Download packages
 
+**Public Archived Address: https://doi.org/10.5281/zenodo.7588406**
+
 ```shell
 # download link
-https://doi.org/10.5281/zenodo.7588406
+pip install gdown
+gdown https://drive.google.com/uc?id=1HgeS4rbGX4oik16UhqhGIwjUkUOq_3kC
+gdown https://drive.google.com/uc?id=1dRqtDBegC4KTfZdOCUWuSKuJufgz2VpG
 ```
 
 * If 7za if not available in the system
