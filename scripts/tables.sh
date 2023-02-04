@@ -11,7 +11,7 @@ echo "##                  May vary from machine to machine.                   ##
 echo "##########################################################################"
 
 echo "------------------------------ profiling ---------------------------------"
-bash $SCRIPTS_PATH/profile.sh &> /dev/null
+bash $SCRIPTS_PATH/profile.sh
 
 echo "--------------------------- analyzing patterns ---------------------------"
 bash $SCRIPTS_PATH/pattern_detect.sh > $RESULTS_PATH/pattens.txt
