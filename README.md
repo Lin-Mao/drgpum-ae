@@ -3,6 +3,8 @@
 
 **Public Archived Address: https://doi.org/10.5281/zenodo.7588406**
 
+**Open-source repository: https://github.com/Lin-Mao/DrGPUM**
+
 ## Setup Artifact Outside Docker
 
 * Download packages
