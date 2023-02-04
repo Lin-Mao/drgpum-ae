@@ -12,12 +12,10 @@ interval=5
 version=shared
 cd $APPS_DIR
 cd polybench_$version
-git checkout heatmap &> /dev/null
 
 ############################## GRAMSCHM ##############################
 echo "------------------ GRAMSCHM ori ------------------"
 cd ./GRAMSCHM
-make -j &> /dev/null
 # warm-up
 run_gramschm_ori="./gramschmidt.exe"
 $run_gramschm_ori &> /dev/null
@@ -48,7 +46,6 @@ echo ""
 ############################## BICG ##############################
 echo "------------------ BICG ori ------------------"
 cd ../BICG
-make -j &> /dev/null
 # warm-up
 run_bicg_ori="./bicg.exe"
 $run_bicg_ori &> /dev/null
