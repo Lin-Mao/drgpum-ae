@@ -226,7 +226,7 @@ run_bicg="./bicg.exe"
 cd BICG
 gvprof -v -e $redshow_mode $control_knobs $run_bicg &> /dev/null
 echo -n "BICG $version " >> $verbose
-cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1 >> $verbose
+# cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1 >> $verbose
 cp -r gvprof-measurements/memory_liveness/ $profile_log/BICG
 
 version=opt
