@@ -9,7 +9,7 @@ iteration=10
 interval=5
 
 ############################## Polybench ##############################
-version=ori
+version=shared
 cd $APPS_DIR
 cd polybench_$version
 git checkout heatmap &> /dev/null
