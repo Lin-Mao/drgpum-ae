@@ -251,7 +251,7 @@ rm hpctoolkit-python-measurements/*hpcrun
 hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_pytorch &> /dev/null
 conda deactivate
 echo -n "Pytorch $version " >> $verbose
-cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1 >> $verbose
+cat hpctoolkit-python-measurements/memory_liveness/submemory_info.txt | head -n 3| tail -n -1 >> $verbose
 cp -r hpctoolkit-python-measurements/memory_liveness/ $profile_log/Pytorch
 
 version=opt
@@ -263,7 +263,7 @@ rm hpctoolkit-python-measurements/*hpcrun
 hpcrun -e gpu=nvidia,memory_liveness -ck HPCRUN_SANITIZER_TORCH_ANALYSIS_ONGPU=1 -o hpctoolkit-python-measurements/ $run_pytorch &> /dev/null
 conda deactivate
 echo -n "Pytorch $version " >> $verbose
-cat hpctoolkit-python-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n -1 >> $verbose
+cat hpctoolkit-python-measurements/memory_liveness/submemory_info.txt | head -n 3| tail -n -1 >> $verbose
 
 ################################################################################################
 ################################# Profile simpleMultiCopy ######################################
