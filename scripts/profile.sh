@@ -184,7 +184,7 @@ cat gvprof-measurements/memory_liveness/memory_liveness.csv | head -n 3| tail -n
 ########################################## 3MM #################################################
 version=ori
 cd $APPS_DIR && cd polybench_$version
-echo "------------------------ 2MM analyzing -----------------------------"
+echo "------------------------ 3MM analyzing -----------------------------"
 run_3mm="./3mm.exe"
 cd 3MM
 gvprof -v -e $redshow_mode $control_knobs $run_3mm &> /dev/null
