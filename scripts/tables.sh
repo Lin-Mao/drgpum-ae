@@ -5,8 +5,8 @@ export SCRIPTS_PATH=$AE_ROOT/scripts
 export RESULTS_PATH=$AE_ROOT/results
 
 echo "##########################################################################"
-echo "##         Program   start  at  $(date)           ##"
-echo "##         Estimated to end at  $(date -d "+1 hour")           ##"
+echo "##         Program   start  at  $(date)            ##"
+echo "##         Estimated to end at  $(date -d "+1 hour")            ##"
 echo "##                  May vary from machine to machine.                   ##"
 echo "##########################################################################"
 
