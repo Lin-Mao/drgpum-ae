@@ -535,7 +535,7 @@ def process_objs(obj_dict, obj2ops, op2stream, op2index, op2type, op2timestamp, 
                         distance_count += 1
                     if inefficiency_distance[2] > 0:
                         args_dict["Inefficiency distance" + str(distance_count)] = inefficiency_distance[2]
-                        args_dict["Optimization suggestion" + str(suggestion_count)] = "Allocate just after KERL("\
+                        args_dict["Optimization suggestion" + str(suggestion_count)] = "Free just after KERL("\
                         "" + str(op2stream[memory_access[op][1]]) + ", " + str(op2index[memory_access[op][1]]) + ")"
                         suggestion_count += 1
                         distance_count += 1
